@@ -1,0 +1,14 @@
+name: tests_booker_offer
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # CHECK THE DEVELOP INFRA BRANCH AND FETCH SUBMODULES
+      - uses: actions/checkout@v2
+      - run: echo -e "registry=https://registry.npmjs.org \ntimeout=60000" > .npmrc && npm i && npm run test:ci
