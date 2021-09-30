@@ -23,3 +23,29 @@ beforeEach(async () => await dbhandler.clearDatabase())
 afterAll(async () => await dbhandler.closeDatabase())
 
 // GLOBAL SCOPE
+global.userGenerator = () => {
+  return {
+    _id: new mongoose.Types.ObjectId().toHexString(),
+    email: faker.internet.email().toLowerCase(),
+    name: faker.name.findName(),
+    authorities: ["ROLE_USER"]
+  }
+}
+
+global.offerGenerator = () => {
+  return {
+    product_name: faker.name.findName(),
+    discount_value: faker.name.findName()
+  }
+}
+
+global.register = async user => {
+  // BUILD A PAYLOAD
+  const payload = { ...user }
+  // GENERATE TOKEN
+  const session = JSON.stringify({
+    jwt: jwt.sign(payload, process.env.JWT_TOKEN)
+  })
+  // BUILD OBJECT AND BASE 6$ ENCRYPT
+  return [`express:sess=${Buffer.from(session).toString("base64")}`]
+}
