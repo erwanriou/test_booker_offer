@@ -1,4 +1,4 @@
-# Booker User Repository
+# Booker Offer Repository
 
 ## Table of Contents
 
@@ -25,5 +25,3 @@ in order to build the rest API endpoints or event with a TDD approach, we implem
 ```js
 console.log(util.inspect(body, { showHidden: false, depth: null }))
 ```
-
-![tdd](https://ik.imagekit.io/lqcpp5osrzf/Screenshot_2021-09-28_at_00.02.07_MT_gE1CllS.png)
